@@ -41,6 +41,15 @@
                         hold-trigger-on-release;
                         bindings = <&kp>, <&kp>;
                 };
+
+                ltp: layer_tap_pref {
+                        compatible = "zmk,behavior-hold-tap";
+                        #binding-cells = <2>;
+                        tapping-term-ms = <400>;
+                        quick-tap-ms = <200>;
+                        flavor = "balanced";
+                        bindings = <&mo>, <&kp>;
+                };
         };
 
         combos {
@@ -76,7 +85,7 @@
    &kp TAB   &kp Q       &kp W       &kp F        &kp P        &kp B          &kp J  &kp L        &kp U        &kp Y       &kp SQT     &kp BSPC
    &none     &hml LGUI A &hml LALT R &hml LCTRL S &hml LSHFT T &kp G          &kp M  &hmr RSHFT N &hmr RCTRL E &hmr RALT I &hmr RGUI O &kp SEMI
    &none     &kp Z       &kp X       &kp C        &kp D        &kp V          &kp K  &kp H        &kp COMMA    &kp DOT     &kp FSLH    &none
-                                      &lt FUN ESC  &lt NAV SPACE &kp TAB       &kp RET &lt SYM BSPC &kp DEL
+                                      &ltp FUN ESC &ltp NAV SPACE &kp TAB      &kp RET &ltp SYM BSPC &kp DEL
                         >;
                 };
 
