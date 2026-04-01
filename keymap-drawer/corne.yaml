@@ -50,11 +50,11 @@ layers:
   - ''
   - ''
   - ''
-  - REDO
-  - PASTE
-  - COPY
-  - CUT
-  - UNDO
+  - Gui+Sft+Z
+  - Gui+V
+  - Gui+C
+  - Gui+X
+  - Gui+Z
   - {t: ▽, type: trans}
   - ''
   - LGUI
@@ -78,7 +78,7 @@ layers:
   - PG DN
   - PG UP
   - END
-  - INS
+  - Gui+A
   - ''
   - {t: ▽, type: trans}
   - {type: held}
@@ -178,7 +178,7 @@ layers:
   - F7
   - F8
   - F9
-  - PSCRN
+  - Gui+Sft+4
   - ''
   - ''
   - ''
@@ -190,7 +190,7 @@ layers:
   - F4
   - F5
   - F6
-  - SLCK
+  - BRI UP
   - ''
   - RSHFT
   - RCTRL
@@ -202,7 +202,7 @@ layers:
   - F1
   - F2
   - F3
-  - PAUSE BREAK
+  - BRI DN
   - ''
   - ''
   - ''
