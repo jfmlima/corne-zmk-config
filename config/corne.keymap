@@ -77,7 +77,7 @@
                 base_layer {
 // -----------------------------------------------------------------------------------------
 // | TAB  |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  '  | BSPC |
-// |  -   | A/G | R/A | S/C | T/S |  G  |   |  M  | N/S | E/C | I/A | O/G |  ;   |
+// |  -   |A/CMD|R/OPT|S/CTL|T/SFT|  G  |   |  M  |N/SFT|E/CTL|I/OPT|O/CMD|  ;   |
 // |  -   |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /  |  -   |
 //                    |FN/ES| SPC | TAB |   | ENT | BSPC| DEL |
                         display-name = "Base";
@@ -92,14 +92,14 @@
                 nav_layer {
 // -----------------------------------------------------------------------------------------
 // |      |     |     |     |     |     |   | REDO|PASTE| COPY| CUT | UNDO|      |
-// |      | GUI | ALT | CTRL| SHFT|     |   | LEFT| DOWN|  UP |RIGHT|     |      |
-// |      |     |     |     |     |     |   | HOME| PGDN| PGUP| END | INS |      |
+// |      | CMD | OPT | CTL | SFT |     |   | LEFT| DOWN|  UP |RIGHT|     |      |
+// |      |     |     |     |     |     |   | HOME| PGDN| PGUP| END | SALL|      |
 //                    |     |     |     |   | ENT |     | DEL |
                         display-name = "Nav";
                         bindings = <
-   &trans &none    &none    &none     &none     &none        &kp K_REDO &kp K_PASTE &kp K_COPY &kp K_CUT &kp K_UNDO &trans
+   &trans &none    &none    &none     &none     &none        &kp LG(LS(Z)) &kp LG(V) &kp LG(C) &kp LG(X) &kp LG(Z) &trans
    &none  &kp LGUI &kp LALT &kp LCTRL &kp LSHFT &none       &kp LEFT   &kp DOWN    &kp UP     &kp RIGHT &none      &none
-   &none  &none    &none    &none     &none     &none        &kp HOME   &kp PG_DN   &kp PG_UP  &kp END   &kp INS    &none
+   &none  &none    &none    &none     &none     &none        &kp HOME   &kp PG_DN   &kp PG_UP  &kp END   &kp LG(A)  &none
                             &trans    &trans    &trans       &kp RET    &trans      &kp DEL
                         >;
                 };
@@ -136,15 +136,15 @@
 
                 fun_layer {
 // -----------------------------------------------------------------------------------------
-// |      | F12 |  F7 |  F8 |  F9 |PSCRN|   |     |     |     |     |     |      |
-// |      | F11 |  F4 |  F5 |  F6 |SLCK |   |     | SHFT| CTRL| ALT | GUI |      |
-// |      | F10 |  F1 |  F2 |  F3 |PAUSE|   |     |     |     |     |     |      |
+// |      | F12 |  F7 |  F8 |  F9 | SS4 |   |     |     |     |     |     |      |
+// |      | F11 |  F4 |  F5 |  F6 |BRI+ |   |     | SFT | CTL | OPT | CMD |      |
+// |      | F10 |  F1 |  F2 |  F3 |BRI- |   |     |     |     |     |     |      |
 //                    |     |     |     |   |     |     |     |
                         display-name = "Fun";
                         bindings = <
-   &trans &kp F12 &kp F7 &kp F8 &kp F9 &kp PSCRN          &none &none     &none     &none    &none    &trans
-   &none  &kp F11 &kp F4 &kp F5 &kp F6 &kp SLCK           &none &kp RSHFT &kp RCTRL &kp RALT &kp RGUI &none
-   &none  &kp F10 &kp F1 &kp F2 &kp F3 &kp PAUSE_BREAK    &none &none     &none     &none    &none    &none
+   &trans &kp F12 &kp F7 &kp F8 &kp F9 &kp LG(LS(N4))     &none &none     &none     &none    &none    &trans
+   &none  &kp F11 &kp F4 &kp F5 &kp F6 &kp C_BRI_UP       &none &kp RSHFT &kp RCTRL &kp RALT &kp RGUI &none
+   &none  &kp F10 &kp F1 &kp F2 &kp F3 &kp C_BRI_DN       &none &none     &none     &none    &none    &none
                           &none  &none  &none               &none &none     &none
                         >;
                 };
