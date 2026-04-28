@@ -15,6 +15,7 @@
 #define NUM  3
 #define FUN  4
 #define SYS  5
+#define MEDIA 6
 
 / {
         behaviors {
@@ -77,15 +78,15 @@
                 base_layer {
 // -----------------------------------------------------------------------------------------
 // | TAB  |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  '  | BSPC |
-// |  -   |A/CMD|R/OPT|S/CTL|T/SFT|  G  |   |  M  |N/SFT|E/CTL|I/OPT|O/CMD|  ;   |
-// |  -   |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /  |  -   |
-//                    |FN/ES| SPC | TAB |   | ENT | BSPC| DEL |
+// | CAPW |A/CMD|R/OPT|S/CTL|T/SFT|  G  |   |  M  |N/SFT|E/CTL|I/OPT|O/CMD|  ;   |
+// | SSFT |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /  | REPT |
+//                    |FN/ES| SPC | TAB |   | ENT | BSPC|MD/DL|
                         display-name = "Base";
                         bindings = <
-   &kp TAB   &kp Q       &kp W       &kp F        &kp P        &kp B          &kp J  &kp L        &kp U        &kp Y       &kp SQT     &kp BSPC
-   &none     &hml LGUI A &hml LALT R &hml LCTRL S &hml LSHFT T &kp G          &kp M  &hmr RSHFT N &hmr RCTRL E &hmr RALT I &hmr RGUI O &kp SEMI
-   &none     &kp Z       &kp X       &kp C        &kp D        &kp V          &kp K  &kp H        &kp COMMA    &kp DOT     &kp FSLH    &none
-                                      &ltp FUN ESC &ltp NAV SPACE &kp TAB      &kp RET &ltp SYM BSPC &kp DEL
+   &kp TAB    &kp Q       &kp W       &kp F        &kp P        &kp B          &kp J  &kp L        &kp U        &kp Y       &kp SQT      &kp BSPC
+   &caps_word &hml LGUI A &hml LALT R &hml LCTRL S &hml LSHFT T &kp G          &kp M  &hmr RSHFT N &hmr RCTRL E &hmr RALT I &hmr RGUI O  &kp SEMI
+   &sk LSHFT  &kp Z       &kp X       &kp C        &kp D        &kp V          &kp K  &kp H        &kp COMMA    &kp DOT     &kp FSLH     &key_repeat
+                                       &ltp FUN ESC &ltp NAV SPACE &kp TAB      &kp RET &ltp SYM BSPC &ltp MEDIA DEL
                         >;
                 };
 
@@ -107,14 +108,14 @@
                 sym_layer {
 // -----------------------------------------------------------------------------------------
 // |      |  `  |  <  |  >  |  "  |  ~  |   |     |     |     |     |     |      |
-// |      |  !  |  -  |  +  |  =  |  #  |   |     | SHFT| CTRL| ALT | GUI |      |
-// |      |  ^  |  /  |  *  |  \  |  |  |   |     |     |     |     |     |      |
+// |  {   |  !  |  -  |  +  |  =  |  #  |   |     | SHFT| CTRL| ALT | GUI |  }   |
+// |  $   |  ^  |  /  |  *  |  \  |  |  |   |     |     |     |     |     |  %   |
 //                    |  (  |  )  |  _  |   |     |     |     |
                         display-name = "Sym";
                         bindings = <
-   &trans &kp GRAVE &kp LT    &kp GT   &kp DQT  &kp TILDE      &none &none     &none     &none    &none    &trans
-   &none  &kp EXCL  &kp MINUS &kp PLUS &kp EQUAL &kp HASH      &none &kp RSHFT &kp RCTRL &kp RALT &kp RGUI &none
-   &none  &kp CARET &kp FSLH  &kp STAR &kp BSLH &kp PIPE       &none &none     &none     &none    &none    &none
+   &trans    &kp GRAVE &kp LT    &kp GT   &kp DQT  &kp TILDE      &none &none     &none     &none    &none    &trans
+   &kp LBRC &kp EXCL  &kp MINUS &kp PLUS &kp EQUAL &kp HASH       &none &kp RSHFT &kp RCTRL &kp RALT &kp RGUI &kp RBRC
+   &kp DLLR &kp CARET &kp FSLH  &kp STAR &kp BSLH &kp PIPE        &none &none     &none     &none    &none    &kp PRCNT
                                &kp LPAR &kp RPAR &kp UNDER      &trans &trans   &trans
                         >;
                 };
@@ -137,14 +138,14 @@
                 fun_layer {
 // -----------------------------------------------------------------------------------------
 // |      | F12 |  F7 |  F8 |  F9 | SS4 |   |     |     |     |     |     |      |
-// |      | F11 |  F4 |  F5 |  F6 |BRI+ |   |     | SFT | CTL | OPT | CMD |      |
-// |      | F10 |  F1 |  F2 |  F3 |BRI- |   |     |     |     |     |     |      |
+// |      | F11 |  F4 |  F5 |  F6 |     |   |     | SFT | CTL | OPT | CMD |      |
+// |      | F10 |  F1 |  F2 |  F3 |     |   |     |     |     |     |     |      |
 //                    |     |     |     |   |     |     |     |
                         display-name = "Fun";
                         bindings = <
    &trans &kp F12 &kp F7 &kp F8 &kp F9 &kp LG(LS(N4))     &none &none     &none     &none    &none    &trans
-   &none  &kp F11 &kp F4 &kp F5 &kp F6 &kp C_BRI_UP       &none &kp RSHFT &kp RCTRL &kp RALT &kp RGUI &none
-   &none  &kp F10 &kp F1 &kp F2 &kp F3 &kp C_BRI_DN       &none &none     &none     &none    &none    &none
+   &none  &kp F11 &kp F4 &kp F5 &kp F6 &none              &none &kp RSHFT &kp RCTRL &kp RALT &kp RGUI &none
+   &none  &kp F10 &kp F1 &kp F2 &kp F3 &none              &none &none     &none     &none    &none    &none
                           &none  &none  &none               &none &none     &none
                         >;
                 };
@@ -161,6 +162,21 @@
    &none       &none        &none        &none        &none        &none             &none &none &none &none &none       &none
    &bootloader &sys_reset   &none        &none        &none        &none             &none &none &none &none &sys_reset  &bootloader
                                          &none        &none        &none             &none &none &none
+                        >;
+                };
+
+                media_layer {
+// -----------------------------------------------------------------------------------------
+// |      |     |     |     |     |     |   |     |     |     |     |     |      |
+// |      | CMD | OPT | CTL | SFT |     |   | PREV|VOL- |VOL+ | NEXT|     |      |
+// |      |     |     |     |     |     |   |     |BRI- |BRI+ |     |     |      |
+//                    |     |     |     |   | STOP| PLAY|     |
+                        display-name = "Media";
+                        bindings = <
+   &trans &none    &none    &none     &none     &none        &none      &none        &none        &none      &none &trans
+   &none  &kp LGUI &kp LALT &kp LCTRL &kp LSHFT &none       &kp C_PREV &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT &none &none
+   &none  &none    &none    &none     &none     &none        &none      &kp C_BRI_DN &kp C_BRI_UP &none      &none &none
+                            &none     &none     &none        &kp C_STOP &kp C_PP     &none
                         >;
                 };
         };
