@@ -39,7 +39,7 @@ layers:
   - '&key_repeat'
   - {t: ESC, h: Fun}
   - {t: SPACE, h: Nav}
-  - TAB
+  - LGUI
   - RET
   - {t: BSPC, h: Sym}
   - {t: TAB, h: Media}
