@@ -12,7 +12,7 @@ layers:
   - U
   - Y
   - ''''
-  - BSPC
+  - '&key_repeat'
   - '&caps_word'
   - {t: A, h: LGUI}
   - {t: R, h: LALT}
@@ -36,7 +36,7 @@ layers:
   - ','
   - .
   - /
-  - '&key_repeat'
+  - '-'
   - {t: ESC, h: Fun}
   - {t: SPACE, h: Nav}
   - LGUI
