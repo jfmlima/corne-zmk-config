@@ -42,7 +42,7 @@ layers:
   - TAB
   - RET
   - {t: BSPC, h: Sym}
-  - {t: DEL, h: Media}
+  - {t: TAB, h: Media}
   Nav:
   - {t: ▽, type: trans}
   - ''
