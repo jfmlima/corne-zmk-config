@@ -13,7 +13,7 @@ layers:
   - Y
   - ''''
   - BSPC
-  - ''
+  - '&caps_word'
   - {t: A, h: LGUI}
   - {t: R, h: LALT}
   - {t: S, h: LCTRL}
@@ -25,7 +25,7 @@ layers:
   - {t: I, h: RALT}
   - {t: O, h: RGUI}
   - ;
-  - ''
+  - {t: LSHFT, h: sticky}
   - Z
   - X
   - C
@@ -36,13 +36,13 @@ layers:
   - ','
   - .
   - /
-  - ''
+  - '&key_repeat'
   - {t: ESC, h: Fun}
   - {t: SPACE, h: Nav}
   - TAB
   - RET
   - {t: BSPC, h: Sym}
-  - DEL
+  - {t: DEL, h: Media}
   Nav:
   - {t: ▽, type: trans}
   - ''
@@ -99,7 +99,7 @@ layers:
   - ''
   - ''
   - {t: ▽, type: trans}
-  - ''
+  - '{'
   - '!'
   - '-'
   - +
@@ -110,8 +110,8 @@ layers:
   - RCTRL
   - RALT
   - RGUI
-  - ''
-  - ''
+  - '}'
+  - $
   - ^
   - /
   - '*'
@@ -122,7 +122,7 @@ layers:
   - ''
   - ''
   - ''
-  - ''
+  - '%'
   - (
   - )
   - _
@@ -190,7 +190,7 @@ layers:
   - F4
   - F5
   - F6
-  - BRI UP
+  - ''
   - ''
   - RSHFT
   - RCTRL
@@ -202,7 +202,7 @@ layers:
   - F1
   - F2
   - F3
-  - BRI DN
+  - ''
   - ''
   - ''
   - ''
@@ -258,6 +258,49 @@ layers:
   - ''
   - ''
   - ''
+  Media:
+  - {t: ▽, type: trans}
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - {t: ▽, type: trans}
+  - ''
+  - LGUI
+  - LALT
+  - LCTRL
+  - LSHFT
+  - ''
+  - PREV
+  - VOL DN
+  - VOL UP
+  - NEXT
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - BRI DN
+  - BRI UP
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - STOP
+  - PP
+  - {type: held}
 combos:
 - p: [36, 41]
   k: {t: Sys, h: toggle}
