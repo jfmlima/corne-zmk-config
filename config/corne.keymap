@@ -80,13 +80,13 @@
 // | TAB  |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  '  | BSPC |
 // | CAPW |A/CMD|R/OPT|S/CTL|T/SFT|  G  |   |  M  |N/SFT|E/CTL|I/OPT|O/CMD|  ;   |
 // | SSFT |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /  | REPT |
-//                    |FN/ES| SPC | TAB |   | ENT | BSPC|MD/DL|
+//                    |FN/ES| SPC | TAB |   | ENT | BSPC|MD/TB|
                         display-name = "Base";
                         bindings = <
    &kp TAB    &kp Q       &kp W       &kp F        &kp P        &kp B          &kp J  &kp L        &kp U        &kp Y       &kp SQT      &kp BSPC
    &caps_word &hml LGUI A &hml LALT R &hml LCTRL S &hml LSHFT T &kp G          &kp M  &hmr RSHFT N &hmr RCTRL E &hmr RALT I &hmr RGUI O  &kp SEMI
    &sk LSHFT  &kp Z       &kp X       &kp C        &kp D        &kp V          &kp K  &kp H        &kp COMMA    &kp DOT     &kp FSLH     &key_repeat
-                                       &ltp FUN ESC &ltp NAV SPACE &kp TAB      &kp RET &ltp SYM BSPC &ltp MEDIA DEL
+                                       &ltp FUN ESC &ltp NAV SPACE &kp TAB      &kp RET &ltp SYM BSPC &ltp MEDIA TAB
                         >;
                 };
 
