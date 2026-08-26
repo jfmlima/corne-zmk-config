@@ -98,15 +98,15 @@
 
                 sym_layer {
 // -----------------------------------------------------------------------------------------
-// |      |  `  |  <  |  >  |  "  |  @  |   |     |     |     |     |     |      |
-// |  {   |  !  |  -  |  +  |  =  |  #  |   |     | SHFT| CTRL| ALT | GUI |  }   |
-// |  $   |  &  |  /  |  *  |  \  |  |  |   |     |     |     |     |     |  %   |
+// |      |  `  |  {  |  }  |  "  |  ~  |   |     |     |     |     |     |      |
+// |  @   |  !  |  -  |  +  |  =  |  #  |   |     | SHFT| CTRL| ALT | GUI |      |
+// |  $   |  &  |  [  |  ]  |  \  |  |  |   |     |     |     |     |     |  %   |
 //                    |  (  |  )  |  _  |   |     |     |     |
                         display-name = "Sym";
                         bindings = <
-   &trans    &kp GRAVE &kp LT    &kp GT   &kp DQT  &kp AT         &none &none     &none     &none    &none    &trans
-   &kp LBRC &kp EXCL  &kp MINUS &kp PLUS &kp EQUAL &kp HASH       &none &kp RSHFT &kp RCTRL &kp RALT &kp RGUI &kp RBRC
-   &kp DLLR &kp AMPS  &kp FSLH  &kp STAR &kp BSLH &kp PIPE        &none &none     &none     &none    &none    &kp PRCNT
+   &trans   &kp GRAVE &kp LBRC  &kp RBRC &kp DQT   &kp TILDE      &none &none     &none     &none    &none    &trans
+   &kp AT   &kp EXCL  &kp MINUS &kp PLUS &kp EQUAL &kp HASH       &none &kp RSHFT &kp RCTRL &kp RALT &kp RGUI &none
+   &kp DLLR &kp AMPS  &kp LBKT  &kp RBKT &kp BSLH  &kp PIPE       &none &none     &none     &none    &none    &kp PRCNT
                                &kp LPAR &kp RPAR &kp UNDER      &trans &trans   &trans
                         >;
                 };
