@@ -40,16 +40,16 @@ layers:
   - {t: ESC, h: Fun}
   - {t: SPACE, h: Nav}
   - LGUI
-  - RET
+  - {t: RET, h: Num}
   - {t: BSPC, h: Sym}
   - {t: TAB, h: Media}
   Nav:
   - {t: ▽, type: trans}
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
+  - Alt+E
+  - Alt+`
+  - Alt+I
+  - Alt+N
+  - Alt+U
   - Gui+Sft+Z
   - Gui+V
   - Gui+C
@@ -71,7 +71,7 @@ layers:
   - ''
   - ''
   - ''
-  - ''
+  - Alt+C
   - ''
   - ''
   - HOME
@@ -89,8 +89,8 @@ layers:
   Sym:
   - {t: ▽, type: trans}
   - '`'
-  - <
-  - '>'
+  - '{'
+  - '}'
   - '"'
   - '~'
   - ''
@@ -99,7 +99,7 @@ layers:
   - ''
   - ''
   - {t: ▽, type: trans}
-  - '{'
+  - '@'
   - '!'
   - '-'
   - +
@@ -110,11 +110,11 @@ layers:
   - RCTRL
   - RALT
   - RGUI
-  - '}'
+  - ''
   - $
-  - ^
-  - /
-  - '*'
+  - '&'
+  - '['
+  - ']'
   - \
   - '|'
   - ''
@@ -167,10 +167,10 @@ layers:
   - ''
   - ''
   - '0'
-  - {t: ., type: held}
+  - .
   - '-'
-  - {t: ▽, type: trans}
   - {type: held}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   Fun:
   - {t: ▽, type: trans}
