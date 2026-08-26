@@ -63,15 +63,6 @@
                 };
         };
 
-        conditional_layers {
-                compatible = "zmk,conditional-layers";
-
-                num_layer {
-                        if-layers = <NAV SYM>;
-                        then-layer = <NUM>;
-                };
-        };
-
         keymap {
                 compatible = "zmk,keymap";
 
@@ -80,42 +71,42 @@
 // | TAB  |  Q  |  W  |  F  |  P  |  B  |   |  J  |  L  |  U  |  Y  |  '  | REPT |
 // | CAPW |A/CMD|R/OPT|S/CTL|T/SFT|  G  |   |  M  |N/SFT|E/CTL|I/OPT|O/CMD|  ;   |
 // | SSFT |  Z  |  X  |  C  |  D  |  V  |   |  K  |  H  |  ,  |  .  |  /  |  -   |
-//                    |FN/ES| SPC | CMD |   | ENT | BSPC|MD/TB|
+//                    |FN/ES| SPC | CMD |   |NM/EN| BSPC|MD/TB|
                         display-name = "Base";
                         bindings = <
    &kp TAB    &kp Q       &kp W       &kp F        &kp P        &kp B          &kp J  &kp L        &kp U        &kp Y       &kp SQT      &key_repeat
    &caps_word &hml LGUI A &hml LALT R &hml LCTRL S &hml LSHFT T &kp G          &kp M  &hmr RSHFT N &hmr RCTRL E &hmr RALT I &hmr RGUI O  &kp SEMI
    &sk LSHFT  &kp Z       &kp X       &kp C        &kp D        &kp V          &kp K  &kp H        &kp COMMA    &kp DOT     &kp FSLH     &kp MINUS
-                                       &ltp FUN ESC &ltp NAV SPACE &kp LGUI     &kp RET &ltp SYM BSPC &ltp MEDIA TAB
+                                       &ltp FUN ESC &ltp NAV SPACE &kp LGUI     &ltp NUM RET &ltp SYM BSPC &ltp MEDIA TAB
                         >;
                 };
 
                 nav_layer {
 // -----------------------------------------------------------------------------------------
-// |      |     |     |     |     |     |   | REDO|PASTE| COPY| CUT | UNDO|      |
+// |      |  ´  |  `  |  ^  |  ~  |  ¨  |   | REDO|PASTE| COPY| CUT | UNDO|      |
 // |      | CMD | OPT | CTL | SFT |     |   | LEFT| DOWN|  UP |RIGHT|     |      |
-// |      |     |     |     |     |     |   | HOME| PGDN| PGUP| END | SALL|      |
+// |      |     |     |  ç  |     |     |   | HOME| PGDN| PGUP| END | SALL|      |
 //                    |     |     |     |   | ENT |     | DEL |
                         display-name = "Nav";
                         bindings = <
-   &trans &none    &none    &none     &none     &none        &kp LG(LS(Z)) &kp LG(V) &kp LG(C) &kp LG(X) &kp LG(Z) &trans
-   &none  &kp LGUI &kp LALT &kp LCTRL &kp LSHFT &none       &kp LEFT   &kp DOWN    &kp UP     &kp RIGHT &none      &none
-   &none  &none    &none    &none     &none     &none        &kp HOME   &kp PG_DN   &kp PG_UP  &kp END   &kp LG(A)  &none
+   &trans &kp LA(E) &kp LA(GRAVE) &kp LA(I) &kp LA(N) &kp LA(U)     &kp LG(LS(Z)) &kp LG(V) &kp LG(C) &kp LG(X) &kp LG(Z) &trans
+   &none  &kp LGUI  &kp LALT      &kp LCTRL &kp LSHFT &none         &kp LEFT   &kp DOWN    &kp UP     &kp RIGHT &none      &none
+   &none  &none     &none         &kp LA(C) &none     &none         &kp HOME   &kp PG_DN   &kp PG_UP  &kp END   &kp LG(A)  &none
                             &trans    &trans    &trans       &kp RET    &trans      &kp DEL
                         >;
                 };
 
                 sym_layer {
 // -----------------------------------------------------------------------------------------
-// |      |  `  |  <  |  >  |  "  |  ~  |   |     |     |     |     |     |      |
+// |      |  `  |  <  |  >  |  "  |  @  |   |     |     |     |     |     |      |
 // |  {   |  !  |  -  |  +  |  =  |  #  |   |     | SHFT| CTRL| ALT | GUI |  }   |
-// |  $   |  ^  |  /  |  *  |  \  |  |  |   |     |     |     |     |     |  %   |
+// |  $   |  &  |  /  |  *  |  \  |  |  |   |     |     |     |     |     |  %   |
 //                    |  (  |  )  |  _  |   |     |     |     |
                         display-name = "Sym";
                         bindings = <
-   &trans    &kp GRAVE &kp LT    &kp GT   &kp DQT  &kp TILDE      &none &none     &none     &none    &none    &trans
+   &trans    &kp GRAVE &kp LT    &kp GT   &kp DQT  &kp AT         &none &none     &none     &none    &none    &trans
    &kp LBRC &kp EXCL  &kp MINUS &kp PLUS &kp EQUAL &kp HASH       &none &kp RSHFT &kp RCTRL &kp RALT &kp RGUI &kp RBRC
-   &kp DLLR &kp CARET &kp FSLH  &kp STAR &kp BSLH &kp PIPE        &none &none     &none     &none    &none    &kp PRCNT
+   &kp DLLR &kp AMPS  &kp FSLH  &kp STAR &kp BSLH &kp PIPE        &none &none     &none     &none    &none    &kp PRCNT
                                &kp LPAR &kp RPAR &kp UNDER      &trans &trans   &trans
                         >;
                 };
