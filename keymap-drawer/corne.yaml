@@ -166,8 +166,8 @@ layers:
   - ''
   - ''
   - ''
-  - '0'
   - .
+  - '0'
   - '-'
   - {type: held}
   - {t: ▽, type: trans}
