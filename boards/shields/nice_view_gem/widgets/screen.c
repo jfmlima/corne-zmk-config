@@ -7,6 +7,7 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include <zmk/events/battery_state_changed.h>
 #include <zmk/events/ble_active_profile_changed.h>
 #include <zmk/events/endpoint_changed.h>
+#include <zmk/events/keycode_state_changed.h>
 #include <zmk/events/layer_state_changed.h>
 #include <zmk/events/usb_conn_state_changed.h>
 #include <zmk/events/wpm_state_changed.h>
@@ -14,12 +15,14 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #include <zmk/ble.h>
 #include <zmk/display.h>
 #include <zmk/endpoints.h>
+#include <zmk/hid.h>
 #include <zmk/keymap.h>
 #include <zmk/usb.h>
 #include <zmk/wpm.h>
 
 #include "battery.h"
 #include "layer.h"
+#include "modifiers.h"
 #include "output.h"
 #include "profile.h"
 #include "screen.h"
@@ -48,6 +51,7 @@ static void draw_middle(lv_obj_t *widget, const struct status_state *state) {
     fill_background(canvas);
 
     // Draw widgets
+    draw_modifiers_status(canvas, state);
     draw_wpm_status(canvas, state);
 
     // Rotate for horizontal display
@@ -122,7 +126,7 @@ static void layer_status_update_cb(struct layer_status_state state) {
 
 static struct layer_status_state layer_status_get_state(const zmk_event_t *eh) {
     uint8_t index = zmk_keymap_highest_layer_active();
-    return (struct layer_status_state){.index = index, .label = zmk_keymap_layer_name(index)};
+    return (struct layer_status_state){.index = index, .label = zmk_keymap_layer_name(zmk_keymap_layer_index_to_id(index))};
 }
 
 ZMK_DISPLAY_WIDGET_LISTENER(widget_layer_status, struct layer_status_state, layer_status_update_cb,
@@ -169,6 +173,31 @@ ZMK_SUBSCRIPTION(widget_output_status, zmk_usb_conn_state_changed);
 #if defined(CONFIG_ZMK_BLE)
 ZMK_SUBSCRIPTION(widget_output_status, zmk_ble_active_profile_changed);
 #endif
+
+/**
+ * Modifiers status
+ **/
+
+static void modifiers_status_update_cb(struct modifiers_status_state _state) {
+    // Read the HID state here, on the display thread, after the HID listener has
+    // applied the key event. Redraw only when the modifiers change.
+    uint8_t mods = zmk_hid_get_explicit_mods();
+    struct zmk_widget_screen *widget;
+    SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) {
+        if (widget->state.modifiers != mods) {
+            widget->state.modifiers = mods;
+            draw_middle(widget->obj, &widget->state);
+        }
+    }
+}
+
+static struct modifiers_status_state modifiers_status_get_state(const zmk_event_t *_eh) {
+    return (struct modifiers_status_state){};
+}
+
+ZMK_DISPLAY_WIDGET_LISTENER(widget_modifiers_status, struct modifiers_status_state,
+                            modifiers_status_update_cb, modifiers_status_get_state)
+ZMK_SUBSCRIPTION(widget_modifiers_status, zmk_keycode_state_changed);
 
 /**
  * WPM status
@@ -223,6 +252,7 @@ int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
     widget_layer_status_init();
     widget_output_status_init();
     widget_wpm_status_init();
+    widget_modifiers_status_init();
 
     return 0;
 }

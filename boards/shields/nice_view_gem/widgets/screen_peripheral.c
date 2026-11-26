@@ -100,6 +100,37 @@ ZMK_DISPLAY_WIDGET_LISTENER(widget_peripheral_status, struct peripheral_status_s
 ZMK_SUBSCRIPTION(widget_peripheral_status, zmk_split_peripheral_status_changed);
 
 /**
+ * Charging status without the USB stack
+ *
+ * ZMK enables the USB stack only on the central half, so zmk_usb_is_powered()
+ * is not available here. Poll the nRF52 VBUS detect bit instead. The work runs
+ * on the display queue because LVGL is not thread-safe.
+ **/
+
+#if !IS_ENABLED(CONFIG_USB_DEVICE_STACK) && IS_ENABLED(CONFIG_SOC_SERIES_NRF52X)
+#include <hal/nrf_power.h>
+#if NRF_POWER_HAS_USBREG
+#define GEM_VBUS_POLL 1
+#define VBUS_POLL_INTERVAL K_SECONDS(5)
+
+static void vbus_poll_work_cb(struct k_work *work);
+static K_WORK_DELAYABLE_DEFINE(vbus_poll_work, vbus_poll_work_cb);
+
+static void vbus_poll_work_cb(struct k_work *work) {
+    bool charging = nrf_power_usbregstatus_vbusdet_get(NRF_POWER);
+    struct zmk_widget_screen *widget;
+    SYS_SLIST_FOR_EACH_CONTAINER(&widgets, widget, node) {
+        if (widget->state.charging != charging) {
+            widget->state.charging = charging;
+            draw_top(widget->obj, &widget->state);
+        }
+    }
+    k_work_schedule_for_queue(zmk_display_work_q(), &vbus_poll_work, VBUS_POLL_INTERVAL);
+}
+#endif /* NRF_POWER_HAS_USBREG */
+#endif
+
+/**
  * Initialization
  **/
 
@@ -118,6 +149,10 @@ int zmk_widget_screen_init(struct zmk_widget_screen *widget, lv_obj_t *parent) {
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
     widget_peripheral_status_init();
+
+#if defined(GEM_VBUS_POLL)
+    k_work_schedule_for_queue(zmk_display_work_q(), &vbus_poll_work, K_NO_WAIT);
+#endif
 
     return 0;
 }
